@@ -4,6 +4,27 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class TestVoiture {
+	
+	public static Voiture saisiDataVoiture(Scanner sc)
+	{
+		System.out.println("Taper la marque : ");
+		String marque = sc.nextLine(); // nextLine() : méthode pour lire une chaine de caractère
+		
+		//System.out.println("Marque = "+marque);
+		
+		System.out.println("Taper le modèle : ");
+		String modele = sc.nextLine();
+		
+		System.out.println("Taper la date immatriculation sous la forme : 2010-10-1");
+		String dateImmatriculation = sc.nextLine();
+		LocalDate dateImmat = LocalDate.parse(dateImmatriculation);
+		
+		System.out.println("Taper vitesse max : ");
+		int vitesseMax = sc.nextInt();
+		
+		
+		return new Voiture(marque,modele,vitesseMax,dateImmat);
+	}
 
 	public static void main(String[] args) {
 		/*
@@ -26,35 +47,13 @@ public class TestVoiture {
 		
 		*/
 		
-		System.out.println("Taper les informations de votre voiture : ");
-		
-		System.out.println("****");
-		
-		
 		Scanner sc = new Scanner(System.in); // création d'un lecture du clavier
 		
-		System.out.println("Taper la marque : ");
-		String marque = sc.nextLine(); // nextLine() : méthode pour lire une chaine de caractère
-		
-		//System.out.println("Marque = "+marque);
-		
-		System.out.println("Taper le modèle : ");
-		String modele = sc.nextLine();
-		
-		System.out.println("Taper la date immatriculation sous la forme : 2010-10-1");
-		String dateImmatriculation = sc.nextLine();
-		LocalDate dateImmat = LocalDate.parse(dateImmatriculation);
-		
-		System.out.println("Taper vitesse max : ");
-		int vitesseMax = sc.nextInt();
-		/*
-		System.out.println("Marque = "+marque);
-		System.out.println("Modele = "+modele);
-		System.out.println("DateImmat = "+dateImmat);
-		System.out.println("VitesseMax = "+vitesseMax);*/
-		
-		Voiture v1 = new Voiture(marque,modele,vitesseMax,dateImmat);
+		Voiture v1 = saisiDataVoiture(sc) ;
 		System.out.println(v1);
+		sc.nextLine();
+		Voiture v2 = saisiDataVoiture(sc) ;
+		System.out.println(v2);
 
 	}
 
