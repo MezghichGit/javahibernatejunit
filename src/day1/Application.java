@@ -17,6 +17,11 @@ public class Application {
 		Animal a3 = new Animal("Rex", 3);
 		System.out.println("Nom : " + a3.nom);
 		System.out.println("Age : " + a3.age);
+		
+		System.out.println(Animal.AgeMax);
+		
+		//System.out.println(a1.AgeMax);
+		//System.out.println(a2.AgeMax);
 	}
 
 }
