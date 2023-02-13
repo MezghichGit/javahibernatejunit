@@ -18,7 +18,11 @@ public class Main {
 	     
 	     Statement stmt = connection.createStatement();
 	     
-	     String sql ="insert into etudiant (nom,email,age) values('sam','sam.mezghich@gmail.com','24')";
+	     String nom="Amine";
+	     String email = "mohamed@gmail.com";
+	     int age = 25;
+	     
+	     String sql ="insert into etudiant (nom,email,age) values('"+nom+"','"+email+"','"+age+"')";
 	     int res = stmt.executeUpdate(sql);
 	     System.out.println(res);
 	     
