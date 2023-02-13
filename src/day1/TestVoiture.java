@@ -1,6 +1,7 @@
 package day1;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TestVoiture {
@@ -54,6 +55,13 @@ public class TestVoiture {
 		sc.nextLine();
 		Voiture v2 = saisiDataVoiture(sc) ;
 		System.out.println(v2);
+		
+		ArrayList<Voiture> voitures = new ArrayList<>();
+		voitures.add(v1);
+		voitures.add(v2);
+		
+		System.out.println("Contenu de la liste voitures : ");
+		System.out.println(voitures);
 
 	}
 
