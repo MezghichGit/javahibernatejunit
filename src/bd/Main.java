@@ -87,7 +87,11 @@ public class Main {
 			System.out.println("Donner un nom");
 			String nom = sc.nextLine();
 
-			String sql = "update etudiant set nom='" + nom + "' where id ='" + id + "'";
+			System.out.println("Donner un email");
+			String email = sc.nextLine();
+			
+			
+			String sql = "update etudiant set nom='" + nom + "', email ='"+email+"' where id ='" + id + "'";
 			res = stmt.executeUpdate(sql);
 			System.out.println("Mise à jour avec sucès");
 
@@ -139,9 +143,9 @@ public class Main {
 			// 2)Affichage de toutes les data de la table étudiant
 			getData(stmt);
 			// 3)Suppression d'un étduiant
-			 deleteData(stmt);
+			// deleteData(stmt);
 			// 4)Update
-			//updateData(stmt);
+			updateData(stmt);
 			getData(stmt);
 
 			// System.out.println(connection);
