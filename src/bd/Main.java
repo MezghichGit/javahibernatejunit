@@ -48,6 +48,29 @@ public class Main {
 	     //System.out.println(res);
 	     return res;
 	}
+	
+	public static int deleteData(Statement stmt) throws SQLException
+	{
+		 Scanner sc = new Scanner(System.in);
+	     
+	     System.out.println("Donner un id");
+	     int id=sc.nextInt();
+	     
+	      
+	     String sql ="delete from etudiant where id ='"+id+"'";
+	     int res = stmt.executeUpdate(sql);
+	     
+	     if(res == 1)
+	     {
+	    	 System.out.println("Suppression avec sucès");
+	     }
+	     else
+	     {
+	    	 System.out.println("Etudiant introuvable");
+	     }
+	     return res;
+	}
+	
 	public static void main(String[] args)  throws Exception{
 		Connection connection = null;
 		Statement stmt = null;
@@ -61,10 +84,13 @@ public class Main {
 	     //System.out.println(connection);
 	      stmt = connection.createStatement();
 	     
-		     //1)Lecture de data depuis le clavier
-		      insertData(stmt);
-		     //2)Affichage de toutes les data de la table étudiant
-		     getData(stmt);
+		      //1)Lecture de data depuis le clavier
+		      //insertData(stmt);
+		      //2)Affichage de toutes les data de la table étudiant
+		      getData(stmt);
+		      //3)Suppression d'un étduiant
+		      deleteData(stmt);
+		      getData(stmt);
 	     
 	     
 	     //System.out.println(connection);
