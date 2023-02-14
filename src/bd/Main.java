@@ -7,7 +7,35 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import day2.CrudEcole;
+
 public class Main {
+	
+	
+	public static void getStudentsByIdEcole(Statement stmt) throws SQLException {
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Choisir une école : ");
+		//affichage des écoles afin que notre user peut choisir une école
+		CrudEcole.displayEcoles(stmt);
+		int idEcole = sc.nextInt();
+		
+		ResultSet rs = null;
+		String rq = "select * from etudiant where idecole='"+idEcole+"'";
+
+		rs = stmt.executeQuery(rq);
+
+		while (rs.next()) {
+
+			int id = rs.getInt("id");
+			String nom = rs.getString("nom");
+			String email = rs.getString("email");
+			int age = rs.getInt("age");
+			int idecole = rs.getInt("idecole");
+			System.out.println("ID : " + id + " | Nom : " + nom + " | Email : " + email + " | Age : " + age+" | idEcole : "+idecole);
+		}
+	}
+	
 
 	public static void getData(Statement stmt) throws SQLException {
 		ResultSet rs = null;
@@ -21,8 +49,8 @@ public class Main {
 			String nom = rs.getString("nom");
 			String email = rs.getString("email");
 			int age = rs.getInt("age");
-
-			System.out.println("ID : " + id + " | Nom : " + nom + " | Email : " + email + " | Age : " + age);
+			int idEcole = rs.getInt("idecole");
+			System.out.println("ID : " + id + " | Nom : " + nom + " | Email : " + email + " | Age : " + age+" | idEcole : "+idEcole);
 		}
 	}
 
@@ -37,10 +65,17 @@ public class Main {
 
 		System.out.println("Donner votre age");
 		int age = sc.nextInt();
-
+		sc.nextLine();
+		
+		System.out.println("Choisir une école : ");
+		//affichage des écoles afin que notre user peut choisir une école
+		CrudEcole.displayEcoles(stmt);
+		// saisi de idEcole
+		int idEcole = sc.nextInt();
+		
 		// 1) Insert dans la table Etudiant
 
-		String sql = "insert into etudiant (nom,email,age) values('" + nom + "','" + email + "','" + age + "')";
+		String sql = "insert into etudiant (nom,email,age,idEcole) values('" + nom + "','" + email + "','" + age + "','"+idEcole+"')";
 		int res = stmt.executeUpdate(sql);
 		// System.out.println(res);
 		return res;
@@ -141,14 +176,17 @@ public class Main {
 			// 1)Lecture de data depuis le clavier
 			// insertData(stmt);
 			// 2)Affichage de toutes les data de la table étudiant
-			getData(stmt);
+			//getData(stmt);
 			// 3)Suppression d'un étduiant
 			// deleteData(stmt);
 			// 4)Update
-			updateData(stmt);
-			getData(stmt);
+			//updateData(stmt);
+			//getData(stmt);
 
 			// System.out.println(connection);
+			
+			//5)Affichage de la liste des étudiants d'une école
+			getStudentsByIdEcole(stmt);
 		} catch (Exception exception) {
 			System.out.println("Exception : " + exception.getMessage());
 		}
